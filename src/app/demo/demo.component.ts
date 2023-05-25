@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiGradiwebService } from '../services/api-gradiweb.service';
 
 @Component({
   selector: 'app-demo',
@@ -9,16 +10,22 @@ export class DemoComponent implements OnInit {
 
   public array:any = [];
   public object:any=  { };
-  constructor() { }
+  public humidities:any = [];
+
+  constructor(
+    private api:ApiGradiwebService,
+  ) { }
 
   ngOnInit() {
-    this.array = [
-      ["2018-12-01","AM","ID123", 5000],
-      ["2018-12-01","AM","ID545", 7000],
-      ["2018-12-01","PM","ID545", 3000],
-      ["2018-12-02","AM","ID545", 7000]
-    ];
-   
+    this.api.getHumidities('get-all').subscribe(
+      (result:any) => {
+        if(result){
+          this.humidities = [];
+          for(let i=0;i<result['data'].length;i++){
+            this.humidities.push(result[i]);
+          }
+        }
+      },
+    );
   }
-
 }

@@ -1,9 +1,35 @@
 <app-menu></app-menu>
 <section id="project" class="main-content">
     <div class="container">
-        <h5 class="section-title h1">Demo</h5>
+        <h5 class="section-title h1">Historial</h5>
            
-            {{ array | json }}
+        <div class="table-responsive">
+            <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Lugar</th>
+                <th scope="col">Longitud</th>
+                <th scope="col">Latitud</th>
+                <th scope="col">Humedad</th>
+                <th scope="col">Fecha</th>
+             
+              </tr>
+              </thead>
+              <tbody>
+                
+                <tr *ngFor="let place of humidities">
+                  <th scope="row">{{place.id}}</th>
+                  <td>{{ place.placename }}</td>
+                  <td>{{ place.lng }}</td>
+                  <td>{{ place.lat }}</td>
+                  <td>{{ place.humidity }}</td>
+                  <td>{{ place.created_at }}</td>
+               
+                </tr>
+              </tbody>
+            </table>
+          </div>
     </div>
 </section>
 

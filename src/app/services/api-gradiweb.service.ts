@@ -11,8 +11,9 @@ export class ApiGradiwebService {
 
   api_data: any;
   public api_tk = environment.api_tk;
-  public httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json', 'accept':'application/json', 'authorization':this.api_tk})};
-  public api_url = environment.Vehicles_api_url;
+  // public httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json', 'accept':'application/json', 'authorization':this.api_tk})};
+  public httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json', 'accept':'application/json', 'Access-Control-Allow-Origin':'*'})};
+  public api_url = environment.humidities_url;
 
   constructor(
     private http: HttpClient
@@ -36,6 +37,10 @@ export class ApiGradiwebService {
     };
     const datos = JSON.stringify(api_data);
     return this.http.post(this.api_url + api_consult, datos);
+  }
+
+  public getHumidities(api_consult:string) {
+    return this.http.get(this.api_url+api_consult, this.httpOptions).pipe(map(this.extractData));
   }
 
   public getVehicles(api_consult:string) {

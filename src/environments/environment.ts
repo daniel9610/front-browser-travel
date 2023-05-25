@@ -14,7 +14,8 @@ export const environment = {
     appId: "1:83868436259:web:d5a96dfeb89a55d53a2e96"
   },
   
-  Vehicles_api_url: "https://vehiculosgradiwebapi.000webhostapp.com/api/",
+  humidities_url: "https://back-browser-travel.onrender.com/api/",
+
   api_tk:"CJhbGciOiJSUzI1NiIsImp0aSI6IjMyZjY1YzA3M2IzV1QiLNTdiNmMwNjJhMzQ0M2EMGViMjhiZ",
 };
 
