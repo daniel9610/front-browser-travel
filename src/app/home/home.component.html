@@ -1,0 +1,75 @@
+<app-menu></app-menu>
+
+<section id="project" class="main-content">
+  <div class="container">
+    <h5 class="section-title h1">Vehículos</h5>
+      <form class="formulario" [formGroup]="myForm" (ngSubmit)="onSubmit()">
+
+        <div class="form">
+          <br>
+
+          <label for="type">Tipo de vehículo</label>
+          <input type="text" name="type" class="form-control" formControlName="type" id="type" required> 
+
+          <label for="license_plate">Placa</label>
+          <input type="text" name="license_plate" class="form-control" formControlName="license_plate" id="license_plate" required> 
+
+          <label for="brand_id">Marca</label>
+          <select name="brand_id" id="brand_id" class="form-control" formControlName="brand_id" required>
+            <option *ngFor="let brand of brands" 
+              
+              [value]="brand.id">
+              {{brand.name}}
+           </option>
+          </select>
+
+          <label for="user_id">Propietario</label>
+          <select name="user_id" id="user_id" class="form-control" formControlName="user_id" required>
+            <option *ngFor="let user of users" 
+              
+              [value]="user.id">
+              {{user.name}}
+           </option>
+          </select>
+
+        </div>
+       <br>
+        <button id="btn-save" type="submit" class="btn btn-primary">Añadir</button>
+      </form>
+      <br>
+      <br>
+
+
+
+    <h5 class="section-title h1">Vehículos por marca</h5>
+
+    <label for="brand_id2">Seleccione la marca a consultar</label>
+    <select id="selectid"  name="brand_id2" id="brand_id2" class="form-control" (change)="getVehicles($event.target.value)">
+      <option value=""></option>
+      <option *ngFor="let brand of brands"
+        
+        [value]="brand.id">
+        {{brand.name.charAt(0).toUpperCase() + brand.name.slice(1)}} <!--Convierte la primera letra de la marca a mayúscula-->
+     </option>
+   </select>
+
+
+<div class="table" >
+      <table>
+        <tr >
+          <th>Tipo</th>
+          <th>Placa</th>
+          <th>Propietario</th>
+          <th>Fecha de creación</th>
+        </tr>
+        <tr *ngFor="let vehicle of vehicles">
+          <td>{{vehicle.type}}</td>
+          <td>{{vehicle.license_plate}}</td>
+          <td>{{vehicle.propietario}}</td>
+          <td>{{vehicle.created_at}}</td>
+       
+        </tr>
+      </table>
+  </div>
+  </div>
+</section>
