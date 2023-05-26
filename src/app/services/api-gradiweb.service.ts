@@ -40,7 +40,7 @@ export class ApiGradiwebService {
   }
 
   public getHumidities(api_consult:string) {
-    return this.http.get(this.api_url+api_consult, this.httpOptions).pipe(map(this.extractData));
+    return this.http.get(this.api_url+api_consult).pipe(map(this.extractData));
   }
 
   public getVehicles(api_consult:string) {

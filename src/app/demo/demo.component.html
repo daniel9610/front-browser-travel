@@ -13,14 +13,12 @@
                 <th scope="col">Latitud</th>
                 <th scope="col">Humedad</th>
                 <th scope="col">Fecha</th>
-             
               </tr>
               </thead>
-              <tbody>
-                
+              <tbody> 
                 <tr *ngFor="let place of humidities">
                   <th scope="row">{{place.id}}</th>
-                  <td>{{ place.placename }}</td>
+                  <td>{{ place.place_name }}</td>
                   <td>{{ place.lng }}</td>
                   <td>{{ place.lat }}</td>
                   <td>{{ place.humidity }}</td>

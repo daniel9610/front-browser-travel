@@ -21,9 +21,11 @@ export class DemoComponent implements OnInit {
       (result:any) => {
         if(result){
           this.humidities = [];
-          for(let i=0;i<result['data'].length;i++){
-            this.humidities.push(result[i]);
+          for(let i=0;i<result.data.length;i++){
+            this.humidities.push(result.data[i]);
+
           }
+          console.log(this.humidities)
         }
       },
     );
