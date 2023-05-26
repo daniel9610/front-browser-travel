@@ -11,7 +11,7 @@ import {Observable, of} from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { User } from './user.model';
 import { auth } from 'firebase';
-import { ApiGradiwebService } from './api-gradiweb.service';
+import { ApiBrowserTravelService } from './api-browser-travel.service';
 import Swal from 'sweetalert2';
 
 
@@ -24,7 +24,7 @@ export class AuthenticationService {
 
   
   constructor(
-    private api:ApiGradiwebService,
+    private api:ApiBrowserTravelService,
     private angularFireAuth: AngularFireAuth,
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,

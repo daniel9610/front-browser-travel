@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiGradiwebService } from '../services/api-gradiweb.service';
+import { ApiBrowserTravelService } from '../services/api-browser-travel.service';
 
 @Component({
   selector: 'app-demo',
@@ -13,7 +13,7 @@ export class DemoComponent implements OnInit {
   public humidities:any = [];
 
   constructor(
-    private api:ApiGradiwebService,
+    private api:ApiBrowserTravelService,
   ) { }
 
   ngOnInit() {

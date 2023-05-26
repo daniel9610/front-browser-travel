@@ -17,6 +17,7 @@ import { AuthGuard } from './core/auth.guard';
 import { RouterModule, Routes } from "@angular/router";
 import { MenuComponent } from './menu/menu.component';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { AgmCoreModule } from '@agm/core';
 
 import { AccordionModule } from 'primeng/accordion';
 import { ChartModule } from 'primeng/chart';
@@ -40,6 +41,9 @@ const appRoutes: Routes = [
  
   ],
   imports: [
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyA769LyjgKMydHyRJq-CcPED-hqHSrGpk0"
+    }),
     RouterModule.forRoot(appRoutes, { useHash: true }),
     GoogleChartsModule.forRoot(),
     BrowserModule,

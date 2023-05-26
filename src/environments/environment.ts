@@ -15,7 +15,6 @@ export const environment = {
   },
   
   humidities_url: "https://back-browser-travel.onrender.com/api/",
-
   api_tk:"CJhbGciOiJSUzI1NiIsImp0aSI6IjMyZjY1YzA3M2IzV1QiLNTdiNmMwNjJhMzQ0M2EMGViMjhiZ",
 };
 

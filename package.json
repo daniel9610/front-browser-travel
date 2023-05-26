@@ -1,5 +1,5 @@
 {
-  "name": "gradiweb",
+  "name": "browser-travel",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -8,19 +8,22 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "buildProd": "ng build --base-href=/prueba-gradiweb-front/"
+    "buildProd": "ng build --base-href=/front-browser-travel/"
   },
   "private": true,
   "dependencies": {
+    "@agm/core": "^1.1.0",
     "@angular/animations": "~8.1.1",
     "@angular/common": "~8.1.1",
     "@angular/compiler": "~8.1.1",
     "@angular/core": "~8.1.1",
     "@angular/fire": "^5.2.1",
     "@angular/forms": "~8.1.1",
+    "@angular/google-maps": "^16.0.2",
     "@angular/platform-browser": "~8.1.1",
     "@angular/platform-browser-dynamic": "~8.1.1",
     "@angular/router": "~8.1.1",
+    "@types/googlemaps": "^3.39.13",
     "angular-cli-ghpages": "^0.6.2",
     "angular-google-charts": "^0.1.6",
     "bootstrap": "^4.3.1",

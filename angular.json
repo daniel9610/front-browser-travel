@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "gradiweb": {
+    "browser-travel": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -66,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "gradiweb:build"
+            "browserTarget": "browser-travel:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "gradiweb:build:production"
+              "browserTarget": "browser-travel:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "gradiweb:build"
+            "browserTarget": "browser-travel:build"
           }
         },
         "test": {
@@ -114,11 +114,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "gradiweb:serve"
+            "devServerTarget": "browser-travel:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "gradiweb:serve:production"
+              "devServerTarget": "browser-travel:serve:production"
             }
           }
         },
@@ -129,5 +129,5 @@
       }
     }
   },
-  "defaultProject": "gradiweb"
+  "defaultProject": "browser-travel"
 }

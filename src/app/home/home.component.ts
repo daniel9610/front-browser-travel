@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { AuthenticationService } from '../services/authentication.service';
-import { ApiGradiwebService } from '../services/api-gradiweb.service';
+import { ApiBrowserTravelService } from '../services/api-browser-travel.service';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 
@@ -14,10 +14,16 @@ import Swal from 'sweetalert2';
 })
 export class HomeComponent implements OnInit {
  
+  public markers: any[];
+  public lat: number;
+  public lng: number;
+  public zoom: number;
+
   project: any = [];
   public vehicles:any = [];
   public brands:any = [];
   public users:any = [];
+  public humidities:any = [];
   public myForm: FormGroup;
   nameButton: any;
   user:any = this.auth.currentUserObservable.currentUser;
@@ -25,99 +31,73 @@ export class HomeComponent implements OnInit {
 
   constructor(
     public auth: AuthenticationService,
-    private api:ApiGradiwebService,
+    private api:ApiBrowserTravelService,
     private  formBuilder: FormBuilder,
-    ) { }
+    ) { 
+      this.lat = 0;
+      this.lng = 0;
+      this.zoom = 2;
+      this.markers = [];
+    }
 
   ngOnInit() {
 
-   this.api.getBrands('brands').subscribe(
-    (result:any) => {
-      if(result){
-        this.brands = [];
-        for(let i=0;i<result.length;i++){
-          this.brands.push(result[i]);
-          for(let j=0;j<this.vehicles.length;j++){
-            this.brands.push(this.vehicles[j]);
-          }
-        }
+    this.markers.push({
+      position: {
+        lat: 25.77427,
+        lng: -80.19366
+      },
+      label: {
+        color: "black",
+        text: "Miami"
       }
-    },
- );
+    });
 
-  this.api.getUsers('users').subscribe(
-    (result:any) => {
-      if(result){
-        this.users = [];
-        for(let i=0;i<result.length;i++){
-          this.users.push(result[i]);
-        }
+    this.markers.push({
+      position: {
+        lat: 40.71427,
+        lng: -74.00597
+      },
+      label: {
+        color: "black",
+        text: "NewYork"
       }
-    },
-  );
+    });
 
-
-    this.myForm = this.formBuilder.group({
-      type: ['', [Validators.required, Validators.minLength(1)]],
-      license_plate: ['', [Validators.required, Validators.minLength(6),Validators.maxLength(8)]],
-      brand_id: ['', [Validators.required, Validators.minLength(1)]],
-      user_id: ['',[Validators.required, Validators.minLength(1)]],
-     });
-  }
-  get f() { return this.myForm.controls; }
-
-
-  onSubmit(){
-
-    const form = this.myForm.value;
-    // if(form.parent_id==""){
-    //   this.myForm.controls.parent_id.setValue("Na");
-    // }
-    // console.log(this.myForm.controls.parent_id)
-
-    if(this.myForm.valid){
-      this.nameButton = 'Enviando';
-      this.api.postInsertVehicle( 'vehicles', form.type, form.license_plate, form.brand_id, form.user_id).subscribe(
-          result => {
-        console.log(result);
-
-            if(result){
-              Swal.fire({
-                title: 'Vehículo registrado exitosamente',
-                showConfirmButton: true,
-                confirmButtonText: 'Entendido',
-                confirmButtonColor: '#008000'
-              });
-              this.myForm.reset();
-            }
-          },
-          error => {
-            Swal.fire({
-              title: 'Error API.'
-            });
-          });
-      this.nameButton = 'Enviar';
-    }else if(this.myForm.invalid){
-      console.log(this.myForm);
-      Swal.fire({
-        title: 'Formulario inválido',
-        text: 'Diligencie todos los campos del formulario',
-        cancelButtonText: 'Ok'
-      });
-    }
+    this.markers.push({
+      position: {
+        lat: 28.53834,
+        lng: -81.37924
+      },
+      label: {
+        color: "black",
+        text: "Orlando"
+      }
+    });
   }
 
-  getVehicles(brand_id){
-    console.log(brand_id);
-    this.api.getVehiclesForBrand('vehicles-for-brand', brand_id).subscribe(
-      (result:any) => {
+
+
+  placeMarker($event){
+    // console.log($event.coords);
+    this.api.getHumidityPlace( 'get-humidity-2', $event.coords.lng.toString(), $event.coords.lat.toString()).subscribe(
+      result => {
+      // console.log(result);
         if(result){
-          this.vehicles = [];
-          for(let i=0;i<result.length;i++){
-            this.vehicles.push(result[i]);
-          }
+          Swal.fire({
+            title: result.place_name,
+            text: 'Humedad: '+result.humidity,
+            showConfirmButton: true,
+            confirmButtonText: 'Entendido',
+            confirmButtonColor: '#008000'
+          });
         }
       },
-    );
+      error => {
+        Swal.fire({
+          title: 'Error API.'
+        });
+      });
   }
+ 
 }
