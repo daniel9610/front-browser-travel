@@ -81,7 +81,7 @@ export class HomeComponent implements OnInit {
   placeMarker($event){
     // console.log($event.coords);
     this.api.getHumidityPlace( 'get-humidity-2', $event.coords.lng.toString(), $event.coords.lat.toString()).subscribe(
-      result => {
+      (result: any) => {
       // console.log(result);
         if(result){
           Swal.fire({
